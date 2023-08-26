@@ -2,7 +2,6 @@ import { ChevronDownIcon, Icon } from "@chakra-ui/icons";
 import {
   Menu,
   MenuButton,
-  Button,
   MenuList,
   MenuItem,
   Flex,
@@ -17,9 +16,8 @@ import { CgProfile } from "react-icons/cg";
 import { IoSparkles } from "react-icons/io5";
 import { MdOutlineLogin } from "react-icons/md";
 import { auth } from "@/firebase/clientApp";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { authModalState } from "@/atoms/authModalAtom";
-import { communityState } from "@/atoms/comunitiesAtom";
 
 type UserMenuProps = {
   user?: User | null;
@@ -27,10 +25,8 @@ type UserMenuProps = {
 
 const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const setAuthModalState = useSetRecoilState(authModalState);
-  const resetCommunityState = useResetRecoilState(communityState);
   const logout = async () => {
     await signOut(auth);
-    resetCommunityState();
   };
   return (
     <Menu>
